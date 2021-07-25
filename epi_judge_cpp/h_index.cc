@@ -4,7 +4,18 @@
 using std::vector;
 int HIndex(vector<int> citations) {
   // TODO - you fill in here.
-  return 0;
+    int h_index=0;
+    //sort the array in ascending order.
+    sort(citations.begin(), citations.end());
+    for(int i=citations.size()-1; i>=0; --i){
+        if(citations[i] > h_index ){
+            ++h_index;
+        }
+        else{
+            break;
+        }
+    }
+  return h_index;
 }
 
 int main(int argc, char* argv[]) {
