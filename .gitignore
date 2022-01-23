@@ -42,4 +42,7 @@ tags
 *.vim   
 *.swp
 *.swo
+
+# used by clangd-lsp
+.cache/
 # ======================================
