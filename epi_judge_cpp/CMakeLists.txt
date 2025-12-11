@@ -1,7 +1,8 @@
-cmake_minimum_required(VERSION 3.4)
+# cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.7)
 project(epi_judge_cpp)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 if (MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS -wd4018 -wd4244 -wd4800 -wd4805)

@@ -16,7 +16,7 @@ problem_mapping = {
         },
         "4.01 Computing the parity of a word": {
             "C++: parity.cc": {
-                "passed": 0,
+                "passed": 10000,
                 "total": 10000
             },
             "Java: Parity.java": {
@@ -30,7 +30,7 @@ problem_mapping = {
         },
         "4.02 Swap bits": {
             "C++: swap_bits.cc": {
-                "passed": 0,
+                "passed": 10001,
                 "total": 10001
             },
             "Java: SwapBits.java": {
