@@ -1,6 +1,6 @@
 #include "test_framework/generic_test.h"
 #include <bit>
-
+#include <tracy/Tracy.hpp>
 // brute-force
 // given n: len(input)
 // TC: O(n)
@@ -43,7 +43,8 @@ short ParityUsingXor(unsigned long long x) { // unsigned long long: 64 bits.
   return x & 1;
 }
 
-short ParityUsingStdLib(unsigned long long x) { return std::__popcount(x) % 2; }
+// short ParityUsingStdLib(unsigned long long x) { return std::__popcount(x) %
+// 2; }
 
 // useful when repeated parity calculations are required for variuos inputs.
 // TC: O(n/l) l: total cache lookups.
@@ -58,8 +59,9 @@ short ParityViaCache(unsigned long long x) {
 }
 
 int main(int argc, char *argv[]) {
+  ZoneScoped;
   std::vector<std::string> args{argv + 1, argv + argc};
   std::vector<std::string> param_names{"x"};
-  return GenericTestMain(args, "parity.cc", "parity.tsv", &ParityUsingXor,
+  return GenericTestMain(args, "parity.cc", "parity.tsv", &ParityBruteforce,
                          DefaultComparator{}, param_names);
 }

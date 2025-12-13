@@ -11,6 +11,8 @@ else()
     link_libraries(pthread)
 endif()
 
+find_package(Tracy REQUIRED)
+
 add_executable(a_b_sqrt2 a_b_sqrt2.cc)
 add_executable(absent_value_array absent_value_array.cc)
 add_executable(adding_credits adding_credits.cc)
@@ -231,3 +233,9 @@ add_executable(two_sum two_sum.cc)
 add_executable(uniform_random_number uniform_random_number.cc)
 add_executable(valid_ip_addresses valid_ip_addresses.cc)
 add_executable(zip_list zip_list.cc)
+
+
+
+# profliing targets.
+target_link_libraries(parity Tracy::TracyClient)
+target_compile_definitions(parity PRIVATE TRACY_ENABLE)
