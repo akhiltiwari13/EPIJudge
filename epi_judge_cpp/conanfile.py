@@ -20,13 +20,13 @@ class EpiJudge(ConanFile):
     settings = "os", "arch", "compiler", "build_type"
 
     def requirements(self):
-        self.requires("boost/[~1.88]")
-        self.requires("yaml-cpp/[~0.8]")
-        self.requires("fmt/[~12.0]", override=True, force=True)
-        self.requires("nlohmann_json/[>=3.12.0]")  # used by infra::events
-        self.requires("benchmark/[>=1.8.5]")
-        self.requires("gtest/[>=1.16.0 <2.0]")
-        self.requires("tracy/0.11.1")
+        # self.requires("boost/[~1.88]")
+        # self.requires("yaml-cpp/[~0.8]")
+        # self.requires("fmt/[~12.0]", override=True, force=True)
+        # self.requires("nlohmann_json/[>=3.12.0]")  # used by infra::events
+        # self.requires("benchmark/[>=1.8.5]")
+        # self.requires("gtest/[>=1.16.0 <2.0]")
+        self.requires("tracy/0.12.2")
 
     def build_requirements(self):
         self.tool_requires("cmake/[>=3.30 <4.4]")
@@ -46,6 +46,6 @@ class EpiJudge(ConanFile):
         tc.variables["CMAKE_CXX_STANDARD"] = "17"
         tc.variables["CMAKE_CXX_STANDARD_REQUIRED"] = "ON"
         tc.variables["CMAKE_CXX_EXTENSIONS"] = "OFF"
-        tc.variables["DCMAKE_EXPORT_COMPILE_COMMANDS"] = "ON"
+        tc.variables["CMAKE_EXPORT_COMPILE_COMMANDS"] = "ON"
 
         tc.generate()
