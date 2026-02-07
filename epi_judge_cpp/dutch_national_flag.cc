@@ -7,11 +7,30 @@
 using std::vector;
 enum class Color { kRed, kWhite, kBlue };
 
-void DutchFlagPartition(int pivot_index, vector<Color>* A_ptr) {
-  // TODO - you fill in here.
-  return;
+void DutchFlagPartition(int pivot_index, vector<Color> *A_ptr) {
+  // groups:
+  // unclassified, Less, equals, greater return;
+  // initially the entire array is unclassified;
+  auto &vec = *A_ptr;
+
+  auto pivot = vec.at(pivot_index);
+  int unclassified = 0, less = 0;
+  int more = vec.size();
+
+  while (unclassified < more) {
+    if (vec.at(unclassified) < pivot) {
+      std::swap(vec[less++], vec[unclassified++]);
+    } else if (vec.at(unclassified) == pivot) {
+      unclassified++;
+    } else {
+      // greater than pivot.
+      std::swap(vec[--more],
+                vec[unclassified]); // don't increment cause unclassified has a
+                                    // new element that needs checking.
+    }
+  }
 }
-void DutchFlagPartitionWrapper(TimedExecutor& executor, const vector<int>& A,
+void DutchFlagPartitionWrapper(TimedExecutor &executor, const vector<int> &A,
                                int pivot_idx) {
   vector<Color> colors;
   colors.resize(A.size());
@@ -48,7 +67,7 @@ void DutchFlagPartitionWrapper(TimedExecutor& executor, const vector<int>& A,
   }
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
   std::vector<std::string> args{argv + 1, argv + argc};
   std::vector<std::string> param_names{"executor", "A", "pivot_idx"};
   return GenericTestMain(args, "dutch_national_flag.cc",

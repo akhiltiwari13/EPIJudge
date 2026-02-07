@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <cmath>
+#include <queue>
 #include <vector>
 
 #include "test_framework/generic_test.h"
@@ -8,7 +9,7 @@
 using std::vector;
 
 struct Star {
-  bool operator<(const Star& that) const {
+  bool operator<(const Star &that) const {
     return Distance() < that.Distance();
   }
 
@@ -18,22 +19,37 @@ struct Star {
 };
 
 vector<Star> FindClosestKStars(vector<Star>::const_iterator stars_begin,
-                               const vector<Star>::const_iterator& stars_end,
+                               const vector<Star>::const_iterator &stars_end,
                                int k) {
-  // TODO - you fill in here.
-  return {};
+  std::priority_queue<Star, vector<Star>> max_heap;
+
+  while (stars_begin != stars_end) {
+    max_heap.emplace(*stars_begin);
+    if (max_heap.size() == k + 1) {
+      max_heap.pop();
+    }
+    stars_begin = std::next(stars_begin);
+  }
+
+  std::vector<Star> result{};
+  while (!max_heap.empty()) {
+    result.emplace_back(max_heap.top());
+    max_heap.pop();
+  }
+
+  std::sort(result.begin(), result.end());
+  return result;
 }
 
 namespace test_framework {
 template <>
 struct SerializationTrait<Star> : UserSerTrait<Star, double, double, double> {};
-}  // namespace test_framework
+} // namespace test_framework
 
-std::ostream& operator<<(std::ostream& out, const Star& s) {
+std::ostream &operator<<(std::ostream &out, const Star &s) {
   return out << s.Distance();
 }
-
-bool Comp(const vector<double>& expected, vector<Star> output) {
+bool Comp(const vector<double> &expected, vector<Star> output) {
   if (output.size() != expected.size()) {
     return false;
   }
@@ -48,11 +64,11 @@ bool Comp(const vector<double>& expected, vector<Star> output) {
   return true;
 }
 
-vector<Star> FindClosestKStarsWrapper(const vector<Star>& stars, int k) {
+vector<Star> FindClosestKStarsWrapper(const vector<Star> &stars, int k) {
   return FindClosestKStars(cbegin(stars), cend(stars), k);
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
   std::vector<std::string> args{argv + 1, argv + argc};
   std::vector<std::string> param_names{"stars", "k"};
   return GenericTestMain(args, "k_closest_stars.cc", "k_closest_stars.tsv",

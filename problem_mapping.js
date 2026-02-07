@@ -186,7 +186,7 @@ problem_mapping = {
         },
         "5.01 The Dutch national flag problem": {
             "C++: dutch_national_flag.cc": {
-                "passed": 0,
+                "passed": 204,
                 "total": 204
             },
             "Java: DutchNationalFlag.java": {
@@ -256,7 +256,7 @@ problem_mapping = {
         },
         "5.06 Buy and sell a stock once": {
             "C++: buy_and_sell_stock.cc": {
-                "passed": 0,
+                "passed": 402,
                 "total": 402
             },
             "Java: BuyAndSellStock.java": {
@@ -468,7 +468,7 @@ problem_mapping = {
     "Chapter 06: Strings": {
         "6.00 Bootcamp: Strings": {
             "C++: is_string_palindromic.cc": {
-                "passed": 0,
+                "passed": 10000,
                 "total": 10000
             },
             "Java: IsStringPalindromic.java": {
@@ -482,7 +482,7 @@ problem_mapping = {
         },
         "6.01 Interconvert strings and integers": {
             "C++: string_integer_interconversion.cc": {
-                "passed": 0,
+                "passed": 15002,
                 "total": 15002
             },
             "Java: StringIntegerInterconversion.java": {
@@ -496,7 +496,7 @@ problem_mapping = {
         },
         "6.02 Base conversion": {
             "C++: convert_base.cc": {
-                "passed": 0,
+                "passed": 20001,
                 "total": 20001
             },
             "Java: ConvertBase.java": {
@@ -524,7 +524,7 @@ problem_mapping = {
         },
         "6.04 Replace and remove": {
             "C++: replace_and_remove.cc": {
-                "passed": 0,
+                "passed": 501,
                 "total": 501
             },
             "Java: ReplaceAndRemove.java": {
@@ -690,7 +690,7 @@ problem_mapping = {
         },
         "7.01 Merge two sorted lists": {
             "C++: sorted_lists_merge.cc": {
-                "passed": 0,
+                "passed": 501,
                 "total": 501
             },
             "Java: SortedListsMerge.java": {
@@ -704,7 +704,7 @@ problem_mapping = {
         },
         "7.02 Reverse a single sublist": {
             "C++: reverse_sublist.cc": {
-                "passed": 0,
+                "passed": 210,
                 "total": 210
             },
             "Java: ReverseSublist.java": {
@@ -718,7 +718,7 @@ problem_mapping = {
         },
         "7.03 Test for cyclicity": {
             "C++: is_list_cyclic.cc": {
-                "passed": 0,
+                "passed": 102,
                 "total": 102
             },
             "Java: IsListCyclic.java": {
@@ -874,7 +874,7 @@ problem_mapping = {
     "Chapter 08: Stacks and Queues": {
         "8.01 Implement a stack with max API": {
             "C++: stack_with_max.cc": {
-                "passed": 0,
+                "passed": 101,
                 "total": 101
             },
             "Java: StackWithMax.java": {
@@ -944,7 +944,7 @@ problem_mapping = {
         },
         "8.06 Compute binary tree nodes in order of increasing depth": {
             "C++: tree_level_order.cc": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             },
             "Java: TreeLevelOrder.java": {
@@ -1002,7 +1002,7 @@ problem_mapping = {
     "Chapter 09: Binary Trees": {
         "9.01 Test if a binary tree is height-balanced": {
             "C++: is_tree_balanced.cc": {
-                "passed": 0,
+                "passed": 3852,
                 "total": 3852
             },
             "Java: IsTreeBalanced.java": {
@@ -1044,7 +1044,7 @@ problem_mapping = {
         },
         "9.04 Compute the LCA when nodes have parent pointers": {
             "C++: lowest_common_ancestor_with_parent.cc": {
-                "passed": 0,
+                "passed": 948,
                 "total": 948
             },
             "Java: LowestCommonAncestorWithParent.java": {
@@ -1214,7 +1214,7 @@ problem_mapping = {
     "Chapter 10: Heaps": {
         "10.01 Merge sorted files": {
             "C++: sorted_arrays_merge.cc": {
-                "passed": 0,
+                "passed": 152,
                 "total": 152
             },
             "Java: SortedArraysMerge.java": {
@@ -1256,7 +1256,7 @@ problem_mapping = {
         },
         "10.04 Compute the k closest stars": {
             "C++: k_closest_stars.cc": {
-                "passed": 0,
+                "passed": 51,
                 "total": 51
             },
             "Java: KClosestStars.java": {
@@ -1300,7 +1300,7 @@ problem_mapping = {
     "Chapter 11: Searching": {
         "11.01 Search a sorted array for first occurrence of k": {
             "C++: search_first_key.cc": {
-                "passed": 0,
+                "passed": 314,
                 "total": 314
             },
             "Java: SearchFirstKey.java": {
@@ -1342,7 +1342,7 @@ problem_mapping = {
         },
         "11.04 Compute the integer square root": {
             "C++: int_square_root.cc": {
-                "passed": 0,
+                "passed": 2000,
                 "total": 2000
             },
             "Java: IntSquareRoot.java": {
@@ -1470,7 +1470,7 @@ problem_mapping = {
         },
         "12.02 Is an anonymous letter constructible?": {
             "C++: is_anonymous_letter_constructible.cc": {
-                "passed": 0,
+                "passed": 212,
                 "total": 212
             },
             "Java: IsAnonymousLetterConstructible.java": {
@@ -1484,7 +1484,7 @@ problem_mapping = {
         },
         "12.03 Implement an ISBN cache": {
             "C++: lru_cache.cc": {
-                "passed": 0,
+                "passed": 101,
                 "total": 101
             },
             "Java: LruCache.java": {
@@ -1512,7 +1512,7 @@ problem_mapping = {
         },
         "12.05 Find the nearest repeated entries in an array": {
             "C++: nearest_repeated_entries.cc": {
-                "passed": 0,
+                "passed": 505,
                 "total": 505
             },
             "Java: NearestRepeatedEntries.java": {
@@ -1612,7 +1612,7 @@ problem_mapping = {
     "Chapter 13: Sorting": {
         "13.01 Compute the intersection of two sorted arrays": {
             "C++: intersect_sorted_arrays.cc": {
-                "passed": 0,
+                "passed": 202,
                 "total": 202
             },
             "Java: IntersectSortedArrays.java": {
@@ -1626,7 +1626,7 @@ problem_mapping = {
         },
         "13.02 Merge two sorted arrays": {
             "C++: two_sorted_arrays_merge.cc": {
-                "passed": 0,
+                "passed": 201,
                 "total": 201
             },
             "Java: TwoSortedArraysMerge.java": {
@@ -1796,7 +1796,7 @@ problem_mapping = {
         },
         "14.01 Test if a binary tree satisfies the BST property": {
             "C++: is_tree_a_bst.cc": {
-                "passed": 0,
+                "passed": 3139,
                 "total": 3139
             },
             "Java: IsTreeABst.java": {
@@ -1810,7 +1810,7 @@ problem_mapping = {
         },
         "14.02 Find the first key greater than a given value in a BST": {
             "C++: search_first_greater_value_in_bst.cc": {
-                "passed": 0,
+                "passed": 949,
                 "total": 949
             },
             "Java: SearchFirstGreaterValueInBst.java": {
@@ -1824,7 +1824,7 @@ problem_mapping = {
         },
         "14.03 Find the k largest elements in a BST": {
             "C++: k_largest_values_in_bst.cc": {
-                "passed": 0,
+                "passed": 949,
                 "total": 949
             },
             "Java: KLargestValuesInBst.java": {
@@ -1966,7 +1966,7 @@ problem_mapping = {
         },
         "15.01 The Towers of Hanoi problem": {
             "C++: hanoi.cc": {
-                "passed": 0,
+                "passed": 10,
                 "total": 10
             },
             "Java: Hanoi.java": {

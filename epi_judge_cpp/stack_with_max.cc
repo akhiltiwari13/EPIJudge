@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <stack>
 #include <stdexcept>
 
 #include "test_framework/generic_test.h"
@@ -5,22 +7,25 @@
 #include "test_framework/test_failure.h"
 using std::length_error;
 
+struct SElement {
+  int val;
+  int max;
+};
+
 class Stack {
- public:
-  bool Empty() const {
-    // TODO - you fill in here.
-    return true;
-  }
-  int Max() const {
-    // TODO - you fill in here.
-    return 0;
-  }
+private:
+  std::stack<SElement> _data;
+
+public:
+  bool Empty() const { return _data.empty(); }
+  int Max() const { return _data.top().max; }
   int Pop() {
-    // TODO - you fill in here.
-    return 0;
+    auto result = _data.top().val;
+    _data.pop();
+    return result;
   }
   void Push(int x) {
-    // TODO - you fill in here.
+    _data.push(SElement{x, std::max(x, Empty() ? x : Max())});
     return;
   }
 };
@@ -32,12 +37,12 @@ struct StackOp {
 namespace test_framework {
 template <>
 struct SerializationTrait<StackOp> : UserSerTrait<StackOp, std::string, int> {};
-}  // namespace test_framework
+} // namespace test_framework
 
-void StackTester(const std::vector<StackOp>& ops) {
+void StackTester(const std::vector<StackOp> &ops) {
   try {
     Stack s;
-    for (auto& x : ops) {
+    for (auto &x : ops) {
       if (x.op == "Stack") {
         continue;
       } else if (x.op == "push") {
@@ -64,12 +69,12 @@ void StackTester(const std::vector<StackOp>& ops) {
         throw std::runtime_error("Unsupported stack operation: " + x.op);
       }
     }
-  } catch (length_error&) {
+  } catch (length_error &) {
     throw TestFailure("Unexpected length_error exception");
   }
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
   std::vector<std::string> args{argv + 1, argv + argc};
   std::vector<std::string> param_names{"ops"};
   return GenericTestMain(args, "stack_with_max.cc", "stack_with_max.tsv",

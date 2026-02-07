@@ -43,7 +43,6 @@ double PowerIterative(double x, int y) {
                  // stored in the result when it becomes 1.
       result *= x;
     }
-
     x *= x;
     y >>= 1;
   }

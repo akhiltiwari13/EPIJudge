@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <functional>
 #include <iterator>
+#include <random>
 #include <vector>
 
 #include "test_framework/generic_test.h"
@@ -8,11 +9,19 @@
 #include "test_framework/timed_executor.h"
 using std::bind;
 using std::vector;
-void RandomSampling(int k, vector<int>* A_ptr) {
+void RandomSampling(int k, vector<int> *A_ptr) {
   // TODO - you fill in here.
+  auto &vec = *A_ptr;
+  // generate a seed for random num generation.
+
+  int i = 0;
+  while (i < k) {
+    // swap randomly selected element with i,j,k
+    // swap(a[i], std::uniform_int_distribution<int>{});
+  }
   return;
 }
-bool RandomSamplingRunner(TimedExecutor& executor, int k, vector<int> A) {
+bool RandomSamplingRunner(TimedExecutor &executor, int k, vector<int> A) {
   using namespace test_framework;
   vector<vector<int>> results;
 
@@ -40,13 +49,13 @@ bool RandomSamplingRunner(TimedExecutor& executor, int k, vector<int> A) {
                                         0.01);
 }
 
-void RandomSamplingWrapper(TimedExecutor& executor, int k,
-                           const vector<int>& A) {
+void RandomSamplingWrapper(TimedExecutor &executor, int k,
+                           const vector<int> &A) {
   RunFuncWithRetries(
       bind(RandomSamplingRunner, std::ref(executor), k, std::cref(A)));
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
   std::vector<std::string> args{argv + 1, argv + argc};
   std::vector<std::string> param_names{"executor", "k", "A"};
   return GenericTestMain(args, "offline_sampling.cc", "offline_sampling.tsv",
