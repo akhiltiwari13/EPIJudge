@@ -4,26 +4,33 @@
 #include "test_framework/serialization_traits.h"
 #include "test_framework/test_failure.h"
 using std::length_error;
-
+struct ElementWithCashedMax {
+    int element, max;
+};
 class Stack {
+
+  std::stack <ElementWithCashedMax> elements_with_cashed_max;
  public:
   bool Empty() const {
     // TODO - you fill in here.
-    return true;
+    return empty(elements_with_cashed_max);
   }
   int Max() const {
     // TODO - you fill in here.
-    return 0;
+    return elements_with_cashed_max.top().max;
   }
   int Pop() {
     // TODO - you fill in here.
-    return 0;
+    int pop_element = elements_with_cashed_max.top().element;
+    elements_with_cashed_max.pop();
+    return pop_element;
   }
   void Push(int x) {
-    // TODO - you fill in here.
+    elements_with_cashed_max.push(ElementWithCashedMax{x, std::max(x, Empty()? x: Max())});
     return;
   }
 };
+
 struct StackOp {
   std::string op;
   int argument;

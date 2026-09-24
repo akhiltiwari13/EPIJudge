@@ -45,7 +45,7 @@ short ParityUsingXor(unsigned long long x) { // unsigned long long: 64 bits.
   return x & 1;
 }
 
-short ParityUsingStdLib(unsigned long long x) { return std::__popcount(x) % 2; }
+// short ParityUsingStdLib(unsigned long long x) { return std::__popcount(x) % 2; }
 
 short ParityUsingXorU16(uint16_t x) { // unsigned long long: 64 bits.
   x ^= x >> 8;

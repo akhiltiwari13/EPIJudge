@@ -21,7 +21,23 @@ vector<Star> FindClosestKStars(vector<Star>::const_iterator stars_begin,
                                const vector<Star>::const_iterator& stars_end,
                                int k) {
   // TODO - you fill in here.
-  return {};
+
+  std::priority_queue< Star, vector<Star>> max_heap;
+  vector<Star> result;
+
+  while(stars_begin != stars_end) {
+    max_heap.emplace(*stars_begin);
+    if(size(max_heap)==k+1) {
+      max_heap.pop();
+    }
+    stars_begin= std::next(stars_begin);
+  }
+
+  while (!empty(max_heap)) {
+    result.emplace_back(max_heap.top());
+    max_heap.pop();
+  }
+  return result;
 }
 
 namespace test_framework {
