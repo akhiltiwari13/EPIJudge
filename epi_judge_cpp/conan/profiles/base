@@ -1,0 +1,16 @@
+# Settings shared by every toolchain in this repo. Not usable on its own --
+# each leaf profile include()s this and adds compiler, cppstd, libcxx and
+# build_type. (compiler.cppstd cannot live here: Conan rejects a compiler
+# sub-setting when `compiler` itself is undefined.)
+
+[settings]
+os=Linux
+arch=x86_64
+
+[conf]
+# HARD LIMIT: never build with all cores on these machines. This is the
+# omarchy-tp value (22 threads -> 6). omarchy-hpn has 4 threads and must use
+# 2 -- build.sh derives the real number per host and overrides this with
+# `-c tools.build:jobs=N`, so treat the value here as a safe default only.
+tools.build:jobs=6
+tools.cmake.cmaketoolchain:generator=Ninja

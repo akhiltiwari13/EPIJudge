@@ -1,0 +1,14 @@
+include(base)
+
+[settings]
+compiler=clang
+compiler.version=22
+compiler.libcxx=libc++
+# Must agree with CMAKE_CXX_STANDARD in conanfile.py and CMakeLists.txt.
+compiler.cppstd=gnu17
+build_type=Debug
+
+[conf]
+# Required. Without it CMakeToolchain leaves CMAKE_CXX_COMPILER unset, CMake
+# falls back to c++ -> gcc, and the "clang" profile silently builds with gcc.
+tools.build:compiler_executables={"c": "/usr/bin/clang", "cpp": "/usr/bin/clang++"}

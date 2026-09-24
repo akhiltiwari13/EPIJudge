@@ -16330,7 +16330,7 @@ if no parse error occurred.
 
 @since version 1.0.0
 */
-inline nlohmann::json operator"" _json(const char* s, std::size_t n) {
+inline nlohmann::json operator""_json(const char* s, std::size_t n) {
   return nlohmann::json::parse(s, s + n);
 }
 
@@ -16347,7 +16347,7 @@ pointer object if no parse error occurred.
 
 @since version 2.0.0
 */
-inline nlohmann::json::json_pointer operator"" _json_pointer(const char* s,
+inline nlohmann::json::json_pointer operator""_json_pointer(const char* s,
                                                              std::size_t n) {
   return nlohmann::json::json_pointer(std::string(s, n));
 }

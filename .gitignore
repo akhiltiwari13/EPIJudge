@@ -47,5 +47,14 @@ tags
 .cache/
 compile_commands.json
 .vscode/*
+
+# conan 2 generated; holds absolute machine paths and churns per toolchain.
+# The shareable half is epi_judge_cpp/conan/profiles/, which stays tracked.
+CMakeUserPresets.json
+
+# split DWARF + sanitizer logs
+*.dwo
+*.asan.log*
+*.tsan.log*
 # ======================================
 # ======================================

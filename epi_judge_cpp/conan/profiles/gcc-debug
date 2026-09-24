@@ -1,0 +1,13 @@
+include(base)
+
+[settings]
+compiler=gcc
+compiler.version=16
+compiler.libcxx=libstdc++11
+# Must agree with CMAKE_CXX_STANDARD in conanfile.py and CMakeLists.txt.
+# Dependencies and application code have to be built under one standard.
+compiler.cppstd=gnu17
+build_type=Debug
+
+[conf]
+tools.build:compiler_executables={"c": "/usr/bin/gcc", "cpp": "/usr/bin/g++"}

@@ -1,0 +1,9 @@
+# ThreadSanitizer. Mutually exclusive with AddressSanitizer -- they cannot be
+# combined, which is why this is a separate profile rather than an option.
+
+include(gcc-debug)
+
+[conf]
+user.epi:variant=tsan
+&:tools.build:cxxflags=["-fsanitize=thread", "-fno-omit-frame-pointer", "-g3"]
+&:tools.build:exelinkflags=["-fsanitize=thread"]

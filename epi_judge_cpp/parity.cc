@@ -1,7 +1,12 @@
 #include "test_framework/generic_test.h"
-#include <bit>
-#include <numeric>
 #include <tracy/Tracy.hpp>
+
+// A,B,A XOR B
+// 0,0,0
+// 0,1,1
+// 1,0,1
+// 1,1,0
+// Output is 1 only when the inputs are different.
 // brute-force
 // given n: len(input)
 // TC: O(n)
@@ -21,15 +26,15 @@ short ParityBruteforce(unsigned long long x) {
 // TC: O(k)
 // TODO: (akhil) check if this is kerninghans algorithm?
 short ParityByDroppingLowestSetBit(unsigned long long x) {
-  short count = 0;
+  short parity = 0;
   // unsigned long long op{1ULL};
 
   while (x) {
-    count ^= 1; // cool-bit-trick to alternate a flag on each execution.
+    parity ^= 1; // cool-bit-trick to alternate a flag on each execution.
     // drops x's last set bit.
     x &= (x - 1);
   }
-  return count;
+  return parity;
 }
 
 // XOR of a group of bits is it's parity.
@@ -86,9 +91,41 @@ short ParityViaCache(unsigned long long x) {
 // }();
 
 int main(int argc, char *argv[]) {
-  ZoneScoped;
+  ZoneScopedN("main");
   std::vector<std::string> args{argv + 1, argv + argc};
   std::vector<std::string> param_names{"x"};
-  return GenericTestMain(args, "parity.cc", "parity.tsv", &ParityViaCache,
-                         DefaultComparator{}, param_names);
+
+  // One zone per implementation, wrapping the whole 10k-case sweep rather than
+  // individual calls. These functions run in single-digit nanoseconds, while
+  // recording a Tracy zone costs tens of nanoseconds -- a per-call zone would
+  // measure the profiler, not the algorithm. At sweep granularity each zone is
+  // milliseconds wide and the overhead is noise.
+  int r = 0;
+  {
+    ZoneScopedN("ParityBruteforce");
+    r = GenericTestMain(args, "parity.cc", "parity.tsv", &ParityBruteforce,
+                        DefaultComparator{}, param_names);
+  }
+  {
+    ZoneScopedN("ParityByDroppingLowestSetBit");
+    r = GenericTestMain(args, "parity.cc", "parity.tsv",
+                        &ParityByDroppingLowestSetBit, DefaultComparator{},
+                        param_names);
+  }
+  {
+    ZoneScopedN("ParityUsingXor");
+    r = GenericTestMain(args, "parity.cc", "parity.tsv", &ParityUsingXor,
+                        DefaultComparator{}, param_names);
+  }
+  {
+    ZoneScopedN("ParityUsingStdLib");
+    r = GenericTestMain(args, "parity.cc", "parity.tsv", &ParityUsingStdLib,
+                        DefaultComparator{}, param_names);
+  }
+  {
+    ZoneScopedN("ParityViaCache");
+    r = GenericTestMain(args, "parity.cc", "parity.tsv", &ParityViaCache,
+                        DefaultComparator{}, param_names);
+  }
+  return r;
 }
