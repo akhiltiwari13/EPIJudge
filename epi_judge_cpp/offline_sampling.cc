@@ -2,6 +2,7 @@
 #include <functional>
 #include <iterator>
 #include <random>
+#include <utility>
 #include <vector>
 
 #include "test_framework/generic_test.h"
@@ -10,16 +11,18 @@
 using std::bind;
 using std::vector;
 void RandomSampling(int k, vector<int> *A_ptr) {
-  // TODO - you fill in here.
   auto &vec = *A_ptr;
   // generate a seed for random num generation.
+  // std::default_random_engine seed(std::random_device); // C++'s most vexing
+  // parse?'
+  // use uniform initialization to get around this.
+  std::default_random_engine seed{
+      std::random_device()()}; // this is hard to remember!
 
-  int i = 0;
-  while (i < k) {
-    // swap randomly selected element with i,j,k
-    // swap(a[i], std::uniform_int_distribution<int>{});
+  for (int i = 0; i < k; ++i) {
+    std::swap(vec[i], vec[std::uniform_int_distribution<>{
+                          i, static_cast<int>(vec.size() - 1)}(seed)]);
   }
-  return;
 }
 bool RandomSamplingRunner(TimedExecutor &executor, int k, vector<int> A) {
   using namespace test_framework;

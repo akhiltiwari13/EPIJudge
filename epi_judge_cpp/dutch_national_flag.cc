@@ -1,4 +1,5 @@
 #include <array>
+#include <utility>
 #include <vector>
 
 #include "test_framework/generic_test.h"
@@ -7,11 +8,25 @@
 using std::vector;
 enum class Color { kRed, kWhite, kBlue };
 
+void DutchFlagPartitionBruteforce(int pivot_index, vector<Color> *A_ptr) {
+  auto &vec = *A_ptr;
+  auto p = vec[pivot_index];
+  // std::cout << "in DutchFlagPartitionBruteforce" << std::endl;
+  for (auto i = 0; i < vec.size(); ++i) {
+    for (auto j = i + 1; j < vec.size(); ++j) {
+      if (vec[j] < p) {
+        std::__1::swap(vec[i], vec[j]);
+        break;
+      }
+    }
+  }
+}
+
 void DutchFlagPartition(int pivot_index, vector<Color> *A_ptr) {
   // groups:
   // unclassified, Less, equals, greater return;
   // initially the entire array is unclassified;
-  auto &vec = *A_ptr;
+  auto &vec = *A_ptr; // great hack to convert from pointer to ref.
 
   auto pivot = vec.at(pivot_index);
   int unclassified = 0, less = 0;
@@ -30,6 +45,7 @@ void DutchFlagPartition(int pivot_index, vector<Color> *A_ptr) {
     }
   }
 }
+
 void DutchFlagPartitionWrapper(TimedExecutor &executor, const vector<int> &A,
                                int pivot_idx) {
   vector<Color> colors;
@@ -42,6 +58,7 @@ void DutchFlagPartitionWrapper(TimedExecutor &executor, const vector<int> &A,
   Color pivot = colors[pivot_idx];
 
   executor.Run([&] { DutchFlagPartition(pivot_idx, &colors); });
+  // executor.Run([&] { DutchFlagPartitionBruteforce(pivot_idx, &colors); });
 
   int i = 0;
   while (i < colors.size() && colors[i] < pivot) {

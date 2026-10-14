@@ -7,7 +7,6 @@
 using std::string;
 
 string IntToString(int x) {
-  // TODO - you fill in here.
   if (x == 0)
     return "0"; // handle corner case.
   std::string result{};
@@ -25,7 +24,6 @@ string IntToString(int x) {
   return result;
 }
 int StringToInt(const string &s) {
-  // TODO - you fill in here.
   return (s[0] == '-' ? -1 : 1) *
          std::accumulate(
              ((s[0] == '-') || (s[0] == '+') ? s.begin() + 1 : s.begin()),

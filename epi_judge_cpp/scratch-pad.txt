@@ -1,0 +1,104 @@
+1. reverse_bits:
+
+unsigned long long 16 bytes.  128 bits
+
+
+let's use 2 byte/16 bit cache:  65536
+
+input: x
+b
+1001110101010110  // reverse: 0110101010111001
+0010011000100010
+1101000001001110
+1010101100010011
+0001000101101000
+0010011101010101
+1000100110001000
+1011010000000111
+
+
+have the bitmask handy. 
+
+unsigned int mask_size = 16 bits;
+unsigned int mask= 0xFFFF;
+
+unsigned long long result{0};
+result |= cache[(x|mask)];
+result <<= (mask_size);
+result |= cache[(x>>mask_size|mask)];
+result <<= (mask_size);
+result |= cache[(x>>2*mask_size|mask)];
+result <<= (mask_size);
+result |= cache[(x>>3*mask_size|mask)];
+result <<= (mask_size);
+result |= cache[(x>>4*mask_size|mask)];
+result <<= (mask_size);
+result |= cache[(x>>5*mask_size|mask)];
+result <<= (mask_size);
+result |= cache[(x>>6*mask_size|mask)];
+result <<= (mask_size);
+result |= cache[(x>>7*mask_size|mask)];
+result <<= (mask_size);
+
+
+121334355435464
+
+
+
+2. Dutch/Indian National Flag partitioning (problem)
+basically move the pivot value to it's correct relative place.
+
+order safron -> white -> green
+
+
+#brute-force
+
+List: s, s, w, g, g, s, g, w, w, s
+piv idx = 4
+
+piv = List[4]=g
+List: s, s, w, g, g, s, g, w, w, s
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+      i
+
+ s, w, s, s, w, w, w, g, g, g  i=0;j=1
+
+doing this in a single loop.
+List: s, s, w, g, g, s, g, w, w, s
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+ less 0
+                                  more vec.size()-1                         
+unclassified=0
+
+ while less < unclassified
+if(vec[unclassified]<piv) swap(arr[unclassified], arr[less++])
+  else swap(arr[unclassified], arr[more])
+
+
+
+3. offline sample data...
+offline here means non-streaming/real-time
+
+
+given Arr = {"cust1", "cust2", "cust3", "cust4", "cust5", "cust6","cust7","cust8"};
+and k<Arr.size();
+
+
+generate a truly random subset... meaning don't re-include a data in the random sample 
+
+// psuedocode.
+for idx in 0 to k-1:
+  r = random_num(idx, size-1);
+  swap(arr[r], arr[idx])
+
+
+  4. base conversion
+The book's example: "615" in base 7 → "1A7" in base 13.
+
+5.  merge sorted lists
+
+l1: [5|]->[8|]->[9|]->[13|]->[15|]->[19|]->[25|X]
+l2: [2|]->[3|]->[19|]->[20|]->[29|X]
+
+
+merge: dummy head: [x|x]->append( node, tail);
